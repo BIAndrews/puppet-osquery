@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "author": "Bryan Andrews",
   "summary": "OSQuery Puppet module",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/BIAndrews/puppet-osquery",
   "project_page": "https://github.com/BIAndrews/puppet-osquery",
   "issues_url": "https://github.com/BIAndrews/puppet-osquery/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"}
   ],
   "tags": ["osquery","security","compliance","pci-dss","audit"],
