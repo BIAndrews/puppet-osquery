@@ -21,19 +21,20 @@ class osquery::params {
 
   $package_name = 'osquery'
   $service_name = 'osqueryd'
+  $package_ver  = 'latest' # or present
   $config       = '/etc/osquery/osquery.conf'
   $repo_install = true
 
-  case $::osfamily {
-    'Debian': {
+  case $::operatingsystem {
+    'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {
+      $repo_name = "osquery-s3-centos${::operatingsystemmajrelease}-repo"
+      $repo_url  = "https://osquery-packages.s3.amazonaws.com/centos${::operatingsystemmajrelease}/noarch/osquery-s3-centos${::operatingsystemmajrelease}-repo-1-0.0.noarch.rpm"
+    }
+    'ubuntu': {
       # $lsbdistcodename fact example: 'trusty'
       $repo_url        = "https://osquery-packages.s3.amazonaws.com/${::lsbdistcodename} ${::lsbdistcodename} main"
       $repo_key_id     = 'C9D8B80B'
       $repo_key_server = 'keyserver.ubuntu.com'
-    }
-    'RedHat', 'Amazon': {
-      $repo_name = "osquery-s3-centos${::operatingsystemmajrelease}-repo"
-      $repo_url  = "https://osquery-packages.s3.amazonaws.com/centos${::operatingsystemmajrelease}/noarch/osquery-s3-centos${::operatingsystemmajrelease}-repo-1-0.0.noarch.rpm"
     }
     default: {
       fail("${::operatingsystem} not supported")

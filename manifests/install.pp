@@ -2,10 +2,9 @@
 class osquery::install {
 
   if $::osquery::params::repo_install {
-    case $::osfamily {
-      'Debian': {
+    case $::operatingsystem {
+      'ubuntu': {
 
-        # Debian flavors
         apt::source { 'osquery_repo':
           location => $::osquery::params::repo_url,
           repos    => 'main',
@@ -17,7 +16,7 @@ class osquery::install {
         }
 
       }
-      'RedHat', 'Amazon': {
+      'RedHat', 'Amazon', 'CentOS', 'Scientific', 'OracleLinux': {
 
         # Redhat clone flavors
         package { $::osquery::params::repo_name:
@@ -39,7 +38,7 @@ class osquery::install {
   #
 
   package { $::osquery::params::package_name:
-    ensure => present,
+    ensure => $::osquery::params::package_ver,
   }
 
 }

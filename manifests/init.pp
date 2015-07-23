@@ -7,6 +7,9 @@
 # [*package_name*]
 #   OS package name to be installed. Default is auto detect.
 #
+# [*package_ver*]
+#   Package to ensure exists, can be latest or present. Default is latest.
+#
 # [*service_name*]
 #   Package service name to be ran. Default is auto detect.
 #
@@ -50,14 +53,19 @@ class osquery (
 
   $package_name = $::osquery::params::package_name,
   $service_name = $::osquery::params::service_name,
+  $package_ver  = $::osquery::params::package_ver,
   $settings     = $::osquery::params::settings,
 
 ) inherits ::osquery::params {
+
+  validate_string($package_name)
+  validate_string($service_name)
+  validate_re($package_ver, [ 'latest', 'present' ])
+  validate_hash($settings)
 
   class { '::osquery::install': } ->
   class { '::osquery::config': } ~>
   class { '::osquery::service': } ->
   Class['::osquery']
 
-bad error
 }

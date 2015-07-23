@@ -9,7 +9,7 @@ class osquery::config (
     ensure  => present,
     owner   => root,
     group   => root,
-    content => sorted_json($settings), # array to JSON lib
+    content => sorted_json($::settings), # array to JSON lib
     require => Package[$::osquery::params::package_name],
     notify  => Service[$::osquery::params::service_name],
   }

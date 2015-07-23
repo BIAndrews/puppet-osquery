@@ -1,6 +1,6 @@
 {
   "name": "bryana-osquery",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Bryan Andrews",
   "summary": "OSQuery Puppet module",
   "license": "Apache-2.0",
@@ -31,6 +31,27 @@
     },
     {
       "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Amazon",
       "operatingsystemrelease": [
         "6",
         "7"
