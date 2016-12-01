@@ -1,12 +1,15 @@
 # osquery::service - manage services
-class osquery::service {
+class osquery::service(
+  $service_name    = $osquery::service_name,
+  $package_name    = $osquery::package_name,
+){
 
-  service { $::osquery::params::service_name:
+  service { $service_name:
     ensure     => running,
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    require    => Package[$::osquery::params::package_name],
+    require    => Package[$package_name],
   }
 
 }

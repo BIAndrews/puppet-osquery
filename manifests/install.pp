@@ -1,18 +1,26 @@
 # osquery::install - installation class
-class osquery::install {
+class osquery::install(
+  $repo_install    = $osquery::repo_install,
+  $repo_url        = $osquery::repo_url,
+  $repo_key_id     = $osquery::repo_key_id,
+  $repo_key_server = $osquery::repo_key_server,
+  $package_name    = $osquery::package_name,
+  $package_ver     = $osquery::package_ver,
 
-  if $::osquery::params::repo_install {
+){
+
+  if $repo_install {
     case $::operatingsystem {
       'ubuntu': {
 
         apt::source { 'osquery_repo':
-          location => $::osquery::params::repo_url,
+          location => $repo_url,
           repos    => 'main',
           key      => {
-            'id'     => $::osquery::params::repo_key_id,
-            'server' => $::osquery::params::repo_key_server,
+            'id'     => $repo_key_id,
+            'server' => $repo_key_server,
           },
-          before   => Package[$::osquery::params::package_name],
+          before   => Package[$package_name],
         }
 
       }
@@ -21,9 +29,9 @@ class osquery::install {
         # Redhat clone flavors
         package { $::osquery::params::repo_name:
           ensure   => present,
-          source   => $::osquery::params::repo_url,
+          source   => $repo_url,
           provider => 'rpm',
-          before   => Package[$::osquery::params::package_name],
+          before   => Package[$package_name],
         }
 
       }
@@ -37,8 +45,8 @@ class osquery::install {
   # OSQuery package installation
   #
 
-  package { $::osquery::params::package_name:
-    ensure => $::osquery::params::package_ver,
+  package { $package_name:
+    ensure => $package_ver,
   }
 
 }
