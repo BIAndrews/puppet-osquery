@@ -50,12 +50,14 @@
 # Copyright 2015 Bryan Andrews, unless otherwise noted.
 #
 class osquery (
-
-  $package_name = $::osquery::params::package_name,
-  $service_name = $::osquery::params::service_name,
-  $package_ver  = $::osquery::params::package_ver,
-  $settings     = $::osquery::params::settings,
-
+  $repo_install    = $::osquery::params::repo_install,
+  $repo_url        = $::osquery::params::repo_url,
+  $repo_key_id     = $::osquery::params::repo_key_id,
+  $repo_key_server = $::osquery::params::repo_key_server,
+  $package_name    = $::osquery::params::package_name,
+  $service_name    = $::osquery::params::service_name,
+  $package_ver     = $::osquery::params::package_ver,
+  $settings        = $::osquery::params::settings,
 ) inherits ::osquery::params {
 
   validate_string($package_name)
@@ -63,9 +65,10 @@ class osquery (
   validate_re($package_ver, [ 'latest', 'present' ])
   validate_hash($settings)
 
+  anchor { '::osquery::begin': }
   class { '::osquery::install': } ->
   class { '::osquery::config': } ~>
   class { '::osquery::service': } ->
-  Class['::osquery']
+  anchor { '::osquery::end': }
 
 }
