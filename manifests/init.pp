@@ -10,11 +10,17 @@
 # [*package_ver*]
 #   Package to ensure exists, can be latest or present. Default is latest.
 #
+# [*service_enable*]
+#   Enable or disable the osqueryd service. Default is true.
+#
 # [*service_name*]
 #   Package service name to be ran. Default is auto detect.
 #
 # [*settings_name*]
 #   Hash of the OSquery settings to be converted automatically into a JSON string for the config file.
+#
+# [*repo_install*]
+#   Whether or not to install the osquery yum/apt repository. Default is true.
 #
 # === Variables
 #
@@ -51,17 +57,20 @@
 #
 class osquery (
 
-  $package_name = $::osquery::params::package_name,
-  $service_name = $::osquery::params::service_name,
-  $package_ver  = $::osquery::params::package_ver,
-  $settings     = $::osquery::params::settings,
+  $package_name   = $::osquery::params::package_name,
+  $service_name   = $::osquery::params::service_name,
+  $package_ver    = $::osquery::params::package_ver,
+  $service_enable = $::osquery::params::service_enable,
+  $settings       = $::osquery::params::settings,
+  $repo_install   = $::osquery::params::repo_install,
 
 ) inherits ::osquery::params {
 
   validate_string($package_name)
   validate_string($service_name)
-  validate_re($package_ver, [ 'latest', 'present' ])
+  validate_bool($service_enable)
   validate_hash($settings)
+  validate_bool($repo_install)
 
   class { '::osquery::install': } ->
   class { '::osquery::config': } ~>
