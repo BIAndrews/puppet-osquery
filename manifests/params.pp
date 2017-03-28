@@ -19,11 +19,12 @@ class osquery::params {
     },
   }
 
-  $package_name = 'osquery'
-  $service_name = 'osqueryd'
-  $package_ver  = 'latest' # or present
-  $config       = '/etc/osquery/osquery.conf'
-  $repo_install = true
+  $package_name   = 'osquery'
+  $service_name   = 'osqueryd'
+  $package_ver    = 'latest' # or present
+  $service_enable = true
+  $config         = '/etc/osquery/osquery.conf'
+  $repo_install   = true
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {
