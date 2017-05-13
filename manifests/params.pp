@@ -38,7 +38,7 @@ class osquery::params {
       $repo_key_server = 'keyserver.ubuntu.com'
     }
     default: {
-      fail("${::operatingsystem} not supported")
+      fail("Unsupported platform: ${::operatingsystem}")
     }
   }
 
