@@ -33,6 +33,8 @@ describe 'osquery', :type => :class do
     it {
       should contain_package('osquery')
       should contain_service('osqueryd')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('osquery::params')
     }
   end
 
@@ -49,6 +51,8 @@ describe 'osquery', :type => :class do
     it {
       should contain_package('osquery')
       should contain_service('osqueryd')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('osquery::params')
     }
   end
 
@@ -65,6 +69,8 @@ describe 'osquery', :type => :class do
     it {
       should contain_package('osquery')
       should contain_service('osqueryd')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('osquery::params')
     }
   end
 
@@ -81,6 +87,8 @@ describe 'osquery', :type => :class do
     it {
       should contain_package('osquery')
       should contain_service('osqueryd')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('osquery::params')
     }
   end
 
@@ -97,6 +105,8 @@ describe 'osquery', :type => :class do
     it {
       should contain_package('osquery')
       should contain_service('osqueryd')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('osquery::params')
     }
   end
 
