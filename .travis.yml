@@ -1,31 +1,45 @@
 ---
+sudo: false
 language: ruby
 bundler_args: --without development system_tests
-before_install: rm Gemfile.lock || true
+before_install: 
+  - rm Gemfile.lock || true
+  - gem update bundler
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1.4
-script: rake
+  - 2.1.5
+  - 2.3.1
+script: bundle exec rake test
 env:
-  - PUPPET_VERSION=3.1.1
-  - PUPPET_VERSION=3.2.4
-  - PUPPET_VERSION=3.3.2
-  - PUPPET_VERSION=3.4.3
-  - PUPPET_VERSION=3.6.2
-  - PUPPET_VERSION=3.7.3 FUTURE_PARSER="no"
-  - PUPPET_VERSION=3.8.1 FUTURE_PARSER="no"
+  - PUPPET_GEM_VERSION="~> 3.3.0"
+  - PUPPET_GEM_VERSION="~> 3.4.0"
+  - PUPPET_GEM_VERSION="~> 3.5.0"
+  - PUPPET_GEM_VERSION="~> 3.6.0"
+  - PUPPET_GEM_VERSION="~> 3.7.0"
+  - PUPPET_GEM_VERSION="~> 3.8.0" FUTURE_PARSER=yes
+  - PUPPET_GEM_VERSION="~> 4.1.0"
+  - PUPPET_GEM_VERSION="~> 4.2.0"
+  - PUPPET_GEM_VERSION="~> 4.3.0"
+  - PUPPET_GEM_VERSION="~> 4.4.0"
+  - PUPPET_GEM_VERSION="~> 4.5.0"
+  - PUPPET_GEM_VERSION="~> 4.6.0"
+  - PUPPET_GEM_VERSION="~> 4.7.0"
+  - PUPPET_GEM_VERSION="~> 4.8.0" FUTURE_PARSER=yes
 matrix:
-  allow_failures:
-    - rvm: ruby-head
-    - env: PUPPET_VERSION=3.7.3
-  exclude:
-    - rvm: 2.0.0
-      env: PUPPET_VERSION=3.1.1
-    - rvm: 2.1.4
-      env: PUPPET_VERSION=3.1.1
-    - rvm: 2.1.4
-      env: PUPPET_VERSION=3.2.4
-    - rvm: 2.1.4
-      env: PUPPET_VERSION=3.3.2
   fast_finish: true
+  exclude:
+  - rvm: 2.1.5
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.3.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.4.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.5.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.6.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.7.0"
+  - rvm: 2.3.1
+    env: PUPPET_GEM_VERSION="~> 3.8.0" FUTURE_PARSER=yes

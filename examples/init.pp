@@ -1,6 +1,6 @@
 #include osquery
 
-class { 'osquery':
+class { '::osquery':
   settings => {
     'options'  => {
       'event_pubsub_expiry' => '86000',
@@ -13,6 +13,6 @@ class { 'osquery':
         'interval' => '3600',
       },
     },
-  }
+  },
 }
 
