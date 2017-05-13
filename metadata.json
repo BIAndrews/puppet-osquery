@@ -13,10 +13,6 @@
   "tags": ["osquery","security","compliance","pci-dss","audit"],
   "requirements": [
     {
-      "name": "pe",
-      "version_requirement": ">= 3.0.0"
-    },
-    {
       "name": "puppet",
       "version_requirement": "3.x"
     }
