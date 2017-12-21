@@ -23,7 +23,7 @@ class osquery::params {
   $service_name   = 'osqueryd'
   $package_ver    = 'latest' # or present
   $service_enable = true
-  $config         = '/etc/osquery/osquery.conf'
+  $config_file    = '/etc/osquery/osquery.conf'
   $repo_install   = true
 
   case $::operatingsystem {
