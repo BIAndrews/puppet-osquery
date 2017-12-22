@@ -23,8 +23,20 @@ class osquery::params {
   $service_name   = 'osqueryd'
   $package_ver    = 'latest' # or present
   $service_enable = true
-  $config_file    = '/etc/osquery/osquery.conf'
   $repo_install   = true
+
+  case $::kernel {
+    'Windows': { 
+      $config       = 'C:\ProgramData\osquery\osquery.conf',
+      $config_user  = 'SYSTEM',
+      $config_group = 'Administrators',
+    }
+    default: { 
+      $config       = '/etc/osquery/osquery.conf' 
+      $config_user  = 'root',
+      $config_group = 'root',
+    }
+  }
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {

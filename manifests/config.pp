@@ -5,9 +5,9 @@ class osquery::config(
 
   file { $::osquery::config_file:
     ensure  => present,
-    owner   => root,
-    group   => root,
     content => sorted_json($::osquery::settings, $format), # format as JSON
+    owner   => $::osquery::config_owner,
+    group   => $::osquery::config_group,
     require => Package[$::osquery::package_name],
     notify  => Service[$::osquery::service_name],
   }
