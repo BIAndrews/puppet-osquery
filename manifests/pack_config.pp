@@ -3,14 +3,16 @@ define osquery::pack(
   $pack_file  = $::osquery::settings['packs'][$title],
   $format     = 'simple',
   $pack_input = hiera_hash("osquery::pack::${title}", undef),
+  $owner      = 'root',
+  $group      = 'root',
 ) {
 
   # Get the input from hiera
   if $pack_config {
     file { $pack_file:
       ensure  => present,
-      owner   => 'root',
-      group   => 'root',
+      owner   => $owner,
+      group   => $group,
       content => sorted_json($pack_input, $format), # convert to JSON
       require => Package[$::osquery::package_name],
       notify  => Service[$::osquery::service_name],

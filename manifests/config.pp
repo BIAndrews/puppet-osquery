@@ -4,7 +4,7 @@ class osquery::config {
   $format = 'simple',
 ){
 
-  file { $::osquery::config_file:
+  file { $::osquery::config:
     ensure  => present,
     content => sorted_json($::osquery::settings, $format), # format as JSON
     owner   => $::osquery::config_owner,
