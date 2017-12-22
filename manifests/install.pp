@@ -27,6 +27,13 @@ class osquery::install {
         }
 
       }
+      'Windows': {
+        package{ 'osquery':
+          ensure          => present,
+          provider        => chocolatey,
+          install_options => ['-params','"','/InstallService','"'],
+        }
+      }
       default: {
         fail("${::operatingsystem} not supported")
       }
