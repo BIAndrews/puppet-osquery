@@ -8,7 +8,7 @@ define osquery::pack(
 ) {
 
   # Get the input from hiera
-  if $pack_config {
+  if $pack_input {
     file { $pack_file:
       ensure  => present,
       owner   => $owner,

@@ -4,6 +4,7 @@ class osquery::config (
   $format = 'simple'
 
 ){
+  include '::stdlib'
 
   file { $::osquery::config:
     ensure  => present,
@@ -17,7 +18,7 @@ class osquery::config (
   if has_key($::osquery::settings, 'packs') {
     $packs = keys($::osquery::settings['packs'])
     osquery_config { $packs:
-      #format => $format,
+      format => $format,
     }
   }
 }
