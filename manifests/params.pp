@@ -26,12 +26,12 @@ class osquery::params {
   $repo_install   = true
 
   case $::kernel {
-    'Windows': { 
+    'Windows': {
       $config       = 'C:\ProgramData\osquery\osquery.conf'
       $config_user  = 'SYSTEM'
       $config_group = 'Administrators'
     }
-    default: { 
+    default: {
       $config       = '/etc/osquery/osquery.conf'
       $config_user  = 'root'
       $config_group = 'root'

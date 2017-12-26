@@ -1,4 +1,4 @@
-# define osquery::config - manage json config in pack file
+# define osquery::pack - manage json config in pack file
 define osquery::pack(
   $pack_file  = $::osquery::settings['packs'][$title],
   $format     = 'simple',
