@@ -28,12 +28,12 @@ class osquery::params {
   case $::kernel {
     'Windows': {
       $config       = 'C:\ProgramData\osquery\osquery.conf'
-      $config_user  = 'SYSTEM'
+      $config_owner = 'SYSTEM'
       $config_group = 'Administrators'
     }
     default: {
       $config       = '/etc/osquery/osquery.conf'
-      $config_user  = 'root'
+      $config_owner = 'root'
       $config_group = 'root'
     }
   }
