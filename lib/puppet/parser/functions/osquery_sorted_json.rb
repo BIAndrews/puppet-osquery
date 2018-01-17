@@ -47,16 +47,16 @@ def pretty_sorted_json(obj, indent=0)
 end
 
 module Puppet::Parser::Functions
-  newfunction(:sorted_json, :type => :rvalue, :doc => <<-EOS
+  newfunction(:osquery_sorted_json, :type => :rvalue, :doc => <<-EOS
 This function takes data, outputs making sure the hash keys are sorted
 
 *Examples:*
 
-    sorted_json({'key'=>'value'})
+    osquery_sorted_json({'key'=>'value'}, 'simple')
 
 Would return: {'key':'value'}
 
-    sorted_json({'key'=> ['value','another']}, 'pretty')
+    osquery_sorted_json({'key'=> ['value','another']}, 'pretty')
 
 Would return:
 {
@@ -67,14 +67,16 @@ Would return:
 }
     EOS
   ) do |arguments|
-    raise(Puppet::ParseError, "sorted_json(): Wrong number of arguments " +
+    raise(Puppet::ParseError, "osquery_sorted_json(): Wrong number of arguments " +
       "given (#{arguments.size} for 2)") if arguments.size != 2
 
     input = arguments[0]
     if arguments[1] == 'pretty'
       return pretty_sorted_json(input)
-    else
+    elsif arguments[1] == 'simple'
       return sorted_json(input)
+    else
+      raise(Puppet::ParseError, "osquery_sorted_json(): Invalid format given")
     end
   end
 end
