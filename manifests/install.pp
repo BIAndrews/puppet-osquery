@@ -15,6 +15,10 @@ class osquery::install {
           before   => Package[$::osquery::package_name],
         }
 
+        package { $::osquery::package_name:
+          ensure => $::osquery::package_ver,
+        }
+
       }
       'RedHat', 'Amazon', 'CentOS', 'Scientific', 'OracleLinux': {
 
@@ -39,13 +43,5 @@ class osquery::install {
       }
     } # end case $::osfamily
   } # end if $::osquery::params::repo_install
-
-  #
-  # OSQuery package installation
-  #
-
-  package { $::osquery::package_name:
-    ensure => $::osquery::package_ver,
-  }
 
 }

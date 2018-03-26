@@ -49,6 +49,8 @@ class osquery::params {
       $repo_key_id     = '1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B'
       $repo_key_server = 'keyserver.ubuntu.com'
     }
+    'windows': {
+    }
     default: {
       fail("Unsupported platform: ${::operatingsystem}")
     }
