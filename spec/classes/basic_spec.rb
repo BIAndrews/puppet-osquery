@@ -8,7 +8,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'Redhat',
         :operatingsystemmajrelease => '6',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
