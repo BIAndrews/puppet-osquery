@@ -32,7 +32,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'Redhat',
         :operatingsystemmajrelease => '7',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
@@ -55,7 +56,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'CentOS',
         :operatingsystemmajrelease => '6',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
@@ -78,7 +80,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'CentOS',
         :operatingsystemmajrelease => '7',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
@@ -101,7 +104,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'Scientific',
         :operatingsystemmajrelease => '6',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
@@ -124,7 +128,8 @@ describe 'osquery', :type => :class do
         :operatingsystem => 'Amazon',
         :operatingsystemmajrelease => '6',
         :architecture => 'x86_64',
-        :processorcount => '2'
+        :processorcount => '2',
+        :kernel => 'Linux'
       }
     end
 
@@ -148,7 +153,8 @@ describe 'osquery', :type => :class do
           :operatingsystem => 'Nexenta',
           :operatingsystemmajrelease => '6',
           :architecture => 'x86_64',
-          :processorcount => '2'
+          :processorcount => '2',
+          :kernel => 'Solaris'
         }
       end
 
