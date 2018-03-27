@@ -13,7 +13,7 @@ define osquery::pack(
       ensure  => present,
       owner   => $owner,
       group   => $group,
-      content => sorted_json($pack_input, $format), # convert to JSON
+      content => osquery_sorted_json($pack_input, $format), # convert to JSON
       require => Package[$::osquery::package_name],
       notify  => Service[$::osquery::service_name],
     }
