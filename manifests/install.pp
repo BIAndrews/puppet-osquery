@@ -1,6 +1,7 @@
 # osquery::install - installation class
 class osquery::install {
 
+  # repo install [optional]
   if $::osquery::repo_install {
     case $::operatingsystem {
       'ubuntu': {
@@ -15,10 +16,6 @@ class osquery::install {
           before   => Package[$::osquery::package_name],
         }
 
-        package { $::osquery::package_name:
-          ensure => $::osquery::package_ver,
-        }
-
       }
       'RedHat', 'Amazon', 'CentOS', 'Scientific', 'OracleLinux': {
 
@@ -31,17 +28,33 @@ class osquery::install {
         }
 
       }
-      'Windows': {
-        package{ 'osquery':
-          ensure          => present,
-          provider        => chocolatey,
-          install_options => ['-params','"','/InstallService','"'],
-        }
-      }
       default: {
         fail("${::operatingsystem} not supported")
       }
     } # end case $::osfamily
   } # end if $::osquery::params::repo_install
+
+  # package install
+  case $::kernel {
+    'Linux': {
+
+      package { $::osquery::package_name:
+        ensure => $::osquery::package_ver,
+      }
+
+    }
+    'Windows': {
+
+      package{ 'osquery':
+        ensure          => present,
+        provider        => chocolatey,
+        install_options => ['-params','"','/InstallService','"'],
+      }
+
+    }
+    default: {
+      fail("${::operatingsystem} not supported")
+    }
+  } # end case $::kernel
 
 }
