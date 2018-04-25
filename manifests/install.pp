@@ -54,7 +54,7 @@ class osquery::install {
         }
       }
     }
-    'Windows': {
+    'windows': {
       package{ 'osquery':
         ensure          => present,
         provider        => chocolatey,
