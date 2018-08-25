@@ -40,12 +40,12 @@ class osquery::params {
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {
-      $repo_name = "osquery-s3-centos${::operatingsystemmajrelease}-repo"
-      $repo_url  = "https://osquery-packages.s3.amazonaws.com/centos${::operatingsystemmajrelease}/noarch/osquery-s3-centos${::operatingsystemmajrelease}-repo-1-0.0.noarch.rpm"
+      $repo_name = "osquery-s3-rpm"
+      $repo_url  = "https://pkg.osquery.io/rpm/osquery-s3-rpm.repo"
     }
     'ubuntu': {
       # $lsbdistcodename fact example: 'trusty'
-      $repo_url        = "[arch=${::architecture}] https://osquery-packages.s3.amazonaws.com/${::lsbdistcodename}"
+      $repo_url        = "[arch=${::architecture}] https://pkg.osquery.io/deb deb main"
       $repo_key_id     = '1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B'
       $repo_key_server = 'keyserver.ubuntu.com'
     }
