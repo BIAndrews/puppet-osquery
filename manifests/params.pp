@@ -40,8 +40,8 @@ class osquery::params {
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {
-      $repo_name = "osquery-s3-rpm"
-      $repo_url  = "https://pkg.osquery.io/rpm/osquery-s3-rpm.repo"
+      $repo_name = 'osquery-s3-rpm'
+      $repo_url  = 'https://pkg.osquery.io/rpm/osquery-s3-rpm.repo'
     }
     'ubuntu': {
       # $lsbdistcodename fact example: 'trusty'
