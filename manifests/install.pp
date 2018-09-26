@@ -32,7 +32,6 @@ class osquery::install {
             package { $::osquery::repo_name:
               ensure   => present,
               source   => $::osquery::repo_url,
-              provider => 'rpm',
             }
             # install the osquery package, requiring the yum repo package
             package { $::osquery::package_name:
@@ -40,7 +39,7 @@ class osquery::install {
               require => Package[$::osquery::repo_name],
             }
             # explicitly set ordering for installation of repo and package
-            Package[$osquery::repo_name] -> Package[$::osquery::package_name]
+            Package[$::osquery::repo_name] -> Package[$::osquery::package_name]
           }
           default: {
             fail("${::osfamily} not supported")

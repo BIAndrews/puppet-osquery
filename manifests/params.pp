@@ -9,7 +9,7 @@ class osquery::params {
       'logger_plugin' => 'filesystem',
       'event_pubsub_expiry' => '86000',
       'debug' => false,
-      'worker_threads' => $::processorcount,
+      'worker_threads' => $facts['processorcount'],
     },
     'schedule' => {
       'info' => {
@@ -40,8 +40,8 @@ class osquery::params {
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Amazon', 'Scientific', 'OracleLinux', 'OEL': {
-      $repo_name = 'osquery-s3-rpm'
-      $repo_url  = 'https://pkg.osquery.io/rpm/osquery-s3-rpm.repo'
+      $repo_name = "osquery-s3-centos${facts['os']['release']['major']}-repo"
+      $repo_url  = "https://osquery-packages.s3.amazonaws.com/centos${facts['os']['release']['major']}/noarch/osquery-s3-centos${facts['os']['release']['major']}-repo-1-0.0.noarch.rpm"
     }
     'ubuntu': {
       # $lsbdistcodename fact example: 'trusty'
