@@ -17,7 +17,7 @@ class osquery::config (
 
   if has_key($::osquery::settings, 'packs') {
     $packs = keys($::osquery::settings['packs'])
-    osquery_config { $packs:
+    osquery::pack { $packs:
       format => $format,
     }
   }

@@ -32,6 +32,7 @@ class osquery::install {
             package { $::osquery::repo_name:
               ensure   => present,
               source   => $::osquery::repo_url,
+              provider => 'rpm',
             }
             # install the osquery package, requiring the yum repo package
             package { $::osquery::package_name:
