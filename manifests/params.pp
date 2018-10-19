@@ -43,9 +43,8 @@ class osquery::params {
       $repo_name = "osquery-s3-centos${facts['os']['release']['major']}-repo"
       $repo_url  = "https://osquery-packages.s3.amazonaws.com/centos${facts['os']['release']['major']}/noarch/osquery-s3-centos${facts['os']['release']['major']}-repo-1-0.0.noarch.rpm"
     }
-    'ubuntu': {
-      # $lsbdistcodename fact example: 'trusty'
-      $repo_url        = "[arch=${::architecture}] https://pkg.osquery.io/deb deb main"
+    'Ubuntu', 'Debian': {
+      $repo_url        = 'https://pkg.osquery.io/deb'
       $repo_key_id     = '1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B'
       $repo_key_server = 'keyserver.ubuntu.com'
     }

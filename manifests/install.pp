@@ -10,9 +10,11 @@ class osquery::install {
           'Debian': {
             # add the osquery APT repo
             apt::source { 'osquery_repo':
-              location => $::osquery::repo_url,
-              repos    => 'main',
-              key      => {
+              location     => $::osquery::repo_url,
+              architecture => $::architecture,
+              release      => 'deb',
+              repos        => 'main',
+              key          => {
                 'id'     => $::osquery::repo_key_id,
                 'server' => $::osquery::repo_key_server,
               },
@@ -21,11 +23,15 @@ class osquery::install {
             # install the osquery package after an apt-get update is run
             package { $::osquery::package_name:
               ensure  => $::osquery::package_ver,
-              require => Class['apt::update'],
             }
 
-            # explicitly set ordering for installation of repo and package
-            Apt::Source['osquery_repo'] -> Package[$::osquery::package_name]
+            package { 'apt-transport-https':
+              ensure => present,
+              notify => Class['apt::update'],
+            }
+
+            # explicitly set ordering for installation of package, repo and package
+            Package['apt-transport-https'] -> Apt::Source['osquery_repo'] -> Package[$::osquery::package_name]
           }
           'RedHat': {
             # add the osquery yum repo package
