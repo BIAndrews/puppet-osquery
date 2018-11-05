@@ -1,6 +1,6 @@
 {
   "name": "bryana-osquery",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Bryan Andrews",
   "summary": "OSQuery Puppet module",
   "license": "Apache-2.0",
