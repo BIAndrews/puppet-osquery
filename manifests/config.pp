@@ -1,7 +1,7 @@
 # class osquery::config - manage json config in /etc/osquery
 class osquery::config (
 
-  $format = 'pretty'
+  $format = 'simple'
 
 ){
   include '::stdlib'
