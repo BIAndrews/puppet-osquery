@@ -8,14 +8,20 @@
   "project_page": "https://github.com/BIAndrews/puppet-osquery",
   "issues_url": "https://github.com/BIAndrews/puppet-osquery/issues",
   "dependencies": [
-    {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"},
-    {"name":"puppetlabs-stdlib","version_requirement":">= 2.2.1"}
+    {
+      "name":"puppetlabs-apt",
+      "version_requirement":">= 2.0.0"
+    },
+    {
+      "name":"puppetlabs-stdlib",
+      "version_requirement": ">= 4.25.0 < 9.0.0"
+    }
   ],
   "tags": ["osquery","security","compliance","pci-dss","audit"],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.3.0"
+      "version_requirement": ">= 6.1.0 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
